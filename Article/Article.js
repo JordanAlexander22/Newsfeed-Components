@@ -112,3 +112,73 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+
+
+ //START HERE: 
+//five objects taken in 
+ function createCard(title, date, firstParagraph,secondParagraph, thirdParagraph) {
+  // 1- Create HTML markup
+  const cardBox = document.createElement('div');
+  const card = document.createElement('div');
+  const cardTitle = document.createElement('h2');
+  const cardDate = document.createElement('p');
+  const cardText1 = document.createElement('p');
+  const cardText2 = document.createElement('p');
+  const cardText3 = document.createElement('p');
+  const cardTextClose = document.createElement('div');
+
+
+  // 2- Define HTML structure
+  card.append(cardTitle);
+  card.append(cardDate);
+  card.append(cardText1);
+  card.append(cardText2);
+  card.append(cardText3);
+  card.append(cardBox);
+  card.append(cardTextClose);
+
+  // 3- Add some class names
+  cardBox.classList.add('expandButton');
+  card.classList.add('article');
+  cardTitle.classList.add('title-of-the-article');
+  cardDate.classList.add('date');
+  cardText1.classList.add('cardText1');
+  cardText2.classList.add('cardText2');
+  cardText3.classList.add('cardText3');
+  cardTextClose.classList.add('close');
+
+  // 4- Add some content!
+  cardBox.textContent = 'expand';
+  cardTitle.textContent = title;
+  cardDate.textContent = date;
+  cardText1.textContent = firstParagraph;
+  cardText2.textContent = secondParagraph;
+  cardText3.textContent = thirdParagraph;
+  cardTextClose.textContent = 'X';
+
+
+  // Added functionality
+  cardBox.addEventListener('click', event => {
+    console.log('Card button detected click!', event.target);
+
+    card.classList.toggle('article-open');
+
+  });
+
+  cardTextClose.addEventListener('click', function event () {
+    console.log('Card button detected click!', event.target);
+    
+    card.style.display = 'none';
+
+  });
+
+  return card;
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach((card => {
+  articles.append(createCard(card.title, card.date, card.firstParagraph, card.secondParagraph, card.thirdParagraph));
+}));
